@@ -6,9 +6,39 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:49:24 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/07 14:58:15 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/07 18:00:47 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+t_big_char      *prepare_for_add(t_big_char a)
+{
+	long		*la;
+	long		*end;
+
+	la = (long*)a->data;
+	end = la + (a->len >> 3) + 1;
+	while (la != end)
+	{
+		*la += g_comp_8;
+		la++;
+	}
+	return (a);
+}
+
+t_big_char      *prepare_for_sub(t_big_char a)
+{
+	long		*la;
+	long		*end;
+
+	la = (long*)a->data;
+	end = la + (a->len >> 3) + 1;
+	while (la != end)
+	{
+		*la = ~(*la) + MIN_BITS;
+		la++;
+	}
+	return (a);
+}
 
 t_big_char		*add_big_char(t_big_char a, t_big_char b, int offset)
 {
@@ -34,39 +64,6 @@ t_big_char		*add_big_char(t_big_char a, t_big_char b, int offset)
 	}
 	return (a);
 }
-/*
-	coupl = tab + *a + *b + ret;
-	res = coupl->digit;
-	ret = coupl->ret;
-	a++;
-	b++;
-*/
-/*
-t_big_char      *char_mult_big_char(char c, t_big_char x)
-{
-	char			*ix;
-	t_big_char		*res;
-	char			*ires;
-	char			*end;
-	t_div_mod		*coupl;
-	char			*tab;
-	char			ret;
-	
-	res = create_big_char(x->len + 1);
-	ires = res->data;
-	ires[x->len] = 0;
-	ix = x->data;
-	tab = x->sgn == 1 ? g_mult_tab : g_div_tab;
-	while (res != end)
-	{
-		coupl = tab[*ix * c + coupl->ret];
-		*ires = coupl->digit;
-		ires++;
-		data++;
-	}
-	return (res);
-}
-*/
 
 t_big_char	   	  *char_mult(char c, t_big_char x, t_big_char *res)
 {
@@ -77,7 +74,6 @@ t_big_char	   	  *char_mult(char c, t_big_char x, t_big_char *res)
 	}
 	return (res[c]);
 }
-
 
 void			*mult_big_char(t_big_char a, t_big_char b, t_big_char dest)
 {
@@ -98,18 +94,16 @@ void			*mult_big_char(t_big_char a, t_big_char b, t_big_char dest)
 	{
 		if (*ib)
 		{
-			if (!res_mult[*ib])
-			{
-				res_mult[*ib] = char_mult_big_char(*ib, a);
-			}
-			add_big_char(dest, res_mult[*ib], offset);
+			add_big_char(dest, char_mult_big_char(*ib, a, res_mult), offset);
 		}
 		ib++;
 		offset++;
 	}
 }
-
-int				cmp_for_div(t_big_char num, t_big_char denum)
+/*
+**	a must be same size or greater than b
+*/
+long			cmp_for_div(t_big_char a, t_big_char b)
 {
 	long		*ia;
 	long		*ib;
@@ -117,9 +111,50 @@ int				cmp_for_div(t_big_char num, t_big_char denum)
 
 	ia = (long*)(a->data + a->len - 9);
 	ib = (long*)(b->data + b->len - 9);
-	end = (
-	while 
+	end = ib - (b->len >> 3) - 1;
+	while (ib != end && *ia == *ib)
+	{
+		ia--;
+		ib--;
+	}
+	return (*ia - *ib);
+}
 
 t_big_char      *divmod_big_char(t_big_char a, t_big_char b, int wanna_div)
 {
-	
+	t_big_char		res_mult[128];
+	t_big_char		m;
+	t_big_char		res;
+	char			*ib;
+	char			*end;
+	int				quo;
+	int				sgn;
+
+	sgn = a->sgn * b->sgn;
+	a->sgn = b->sgn = 1;
+	res_mult[1] = b;
+	if (wanna_div)
+	{
+		res = create_big_char(a->len - b->len);
+		res->data += res->len;
+		res->len = 0;
+	}
+	while (a->len >= b->len)
+	{
+		quo = a->data[a->len - 1] / b->data[b->len - 1];
+		m = char_mult(quo); 
+		quo -= m && cmp_for_div(m, a) > 0;
+		m = char_mult(quo);
+		if (m)
+		{
+			add_big_char(a, m, offset);
+		}
+		if (wanna_div)
+		{
+			*(--res->data) = quo;
+			res->len++;
+		}
+		a->len--;
+		offset--;
+	}
+}
