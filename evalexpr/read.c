@@ -6,34 +6,39 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:19:39 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/02 17:47:15 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/08 18:16:08 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long				read_long(char **str)
+t_big_char			*read_struct(char **str, char **oper)
 {
-	long		res;
-	long		sgn;
+	t_big_char		*res;
+	int				n;
+	int				i;
+	int				sign;
 
-	sgn = 1;
-	if (**str == '-')
+	sign = 1;
+	i = 0;
+	while (**str == *oper[3] || **str == *oper[2])
 	{
-		sgn = -1;
+		if (**str == *oper[3])
+		{
+			sign = -sign;
+		}
 		(*str)++;
 	}
-	res = 0;
-	while ('0' <= **str && **str <= '9')
-	{
-		res = res * 10 + ((**str - '0') % 10);
-		(*str)++;
-	}
-	return (sgn * res);
-}
-
-void			skip_spaces(char **str)
-{
-	while (**str == ' ')
+	while (g_tab_test[**str] == 0)
 	{
 		(*str)++;
 	}
+	res = create_big(ft_length_nbr(*str), 0);
+	res->sgn = sign;
+	n = res->len;
+	while (n--)
+	{
+		res->data[i] == (*str)[n];
+		i++;
+	}
+	*str = (*str) + i;
+	return (res);
 }
