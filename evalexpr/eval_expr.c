@@ -6,12 +6,20 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 22:46:05 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 23:27:56 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print.h"
-#include "eval_op.h"
+#include "bistro.h"
+#include "const.h"
+
+void			init_global(char *base)
+{
+	g_base = ft_strlen(base);
+	g_compl = 256 - g_base;
+	g_compl_8 = g_compl * 0x0101010101010101;
+	g_zero_big = create_big(0, 0);
+}
 
 int				eval_expr(char *base, char *oper, char *str)
 {
@@ -20,7 +28,8 @@ int				eval_expr(char *base, char *oper, char *str)
 	t_fbig	op;
 
 	i = 0;
-	init_test_tab(&base, &oper);
+	init_test_tab(base, oper);
+	init_global(base);
 	op = initfptr(oper);
 	while (g_tab_test[str[i]] != -1)
 	{
@@ -31,7 +40,7 @@ int				eval_expr(char *base, char *oper, char *str)
 		ft_putstr(SYNTAXE_ERROR_MSG, 2);
 		return (0);
 	}
-	res = eval_op(eval(&str, &oper, op), &str, '\0', op);
+	res = eval_op(eval(&str, oper, op), &str, '\0', op);
 	ft_putconvert(res->data, 1);
 	return (1);
 }
