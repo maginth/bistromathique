@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/08 17:52:21 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:29:50 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			init_test_tab(char *base, char *oper)
 		g_tab_test[*base] = i++;
 		base++;
 	}
+	i = -2;
 	while (*oper)
 	{
 		if (g_tab_test[*oper] != -1)
@@ -54,8 +55,21 @@ int			init_test_tab(char *base, char *oper)
 			ft_putstr(SYNTAXE_ERROR_MSG, 2);
 			return (0);
 		}
-		g_tab_test[*oper] = -2;
+		g_tab_test[*oper] = i--;
 		oper++;
 	}
 	return (0);
+}
+
+t_big		*init_fptr(char *oper)
+{
+	t_fbig		op;
+
+	op[oper[2]] = &add_big;
+	op[oper[3]] = &add_big;
+	op[oper[4]] = &mult_big;
+	op[oper[5]] = &div_big;
+	op[oper[6]] = &mod_big;
+
+	return (op);
 }

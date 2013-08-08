@@ -6,53 +6,58 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 17:55:20 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 21:26:32 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h";
 
-t_big_char			*eval(char **str, char **oper)
+t_big				*eval(char **str, char **oper, t_fbig op)
 {
 	(*str)++;
-	return (**str == *oper[0] ? eval_op(eval(str), str, *oper[1], oper) \
+	return (**str == *oper[0] ? eval_op(eval(str), str, *oper[1], op) \
 			: read_struct(str, oper));
 }
 
-t_big_char			*eval_prio(t_big_char *a, char **str, char **oper)
+t_big				*eval_prio(t_big *a, char **str, t_fbig op)
 {
 	char			ops;
+	t_big			*b;
+	t_big			*tmp;
 
+	if (!a)
+	{
+		return (NULL);
+	}
 	ops = **str;
 	(*str)++;
-	if (ops == *oper[4] || ops == *oper[5] || ops == *oper[6])
-	{
-		return (eval_prio(mult_big_char(a, eval(str)), str, oper);
-	}
-	return (a);
+	b = eval(str);
+	return (eval_prio(op[ops](a, b), str, oper));
 }
 
-t_big_char			*eval_op(t_big_char *a, char **str, char close, \
-							char **oper)
+t_big				*eval_op(t_big *a, char **str, char close, \
+							t_fbig op)
 {
-	t_big_char		*b;
+	t_big			*b;
 	char			ops;
+	t_big			*tmp;
 
-	if (**str == close)
+	if (!a || **str == close)
 	{
 		(*str)++;
 		return (a);
 	}
 	ops = **str;
-	if (ops != *oper[3])
+	(*str) += (g_tab_test[**str] != -5);
+	b = eval (str, oper, op);
+	if (g_tab_test[**str] == -5 || g_tab_test[**str] == -4)
 	{
-		(*str)++;
+		tmp = eval_prio(b, str, op);
+		if (!tmp)
+		{
+			return (NULL)
+		}
+		return (eval_op(op[ops](a, tmp), str, close, op));
 	}
-	b = eval(str);
-	if (ops == *oper[2] || ops == *oper[3])
-	{
-		return (eval_op(add_big_char(a, eval_prio(b, str, oper)),	\
-						str, close, oper));
-	}
-	return (eval_op(mult_big_char(a, b), str, close, oper));
+	return (eval_op(op[ops](a, b), str, close, op);
 }
