@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:48:11 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/07 17:20:51 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/08 20:30:55 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BISTRO_H
 # define RET_BITS 0x8080808080808080
 # define EXTRA_BUF 256
+# define L_END(x) (((long*)x->data) + (((x)->len + 7) >> 3)) 
 typedef	struct	s_big_char
 {
 	char		*data;

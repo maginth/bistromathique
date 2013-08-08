@@ -6,9 +6,12 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/07 18:17:58 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/08 21:49:20 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "bistro.h"
+#include <unistd.h>
 
 t_big		create_big(int len, int fill_zero)
 {

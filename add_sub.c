@@ -6,18 +6,18 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:49:24 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/07 18:00:47 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/08 20:31:46 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "bistro.h"
+
 t_big		add_big(t_big a, t_big b)
 {
-	t_big		tmp;
-
 	if (a->len < b->len 
 		|| (a->len == b->len 
 			&& a->sgn != b->sgn 
-			&& cmp_big(a, b) < 0)
+			&& cmp_big(a, b, 0) < 0))
 	{
 		return (add_big(b, a));
 	}
@@ -33,12 +33,12 @@ t_big		add_big(t_big a, t_big b)
 
 void			offset_add(t_big a, t_big b, int offset)
 {
-	add_data((long*)(a->data + offset), (long*)b->data, lb + (b->len >> 3));
+	add_data((long*)(a->data + offset), (long*)b->data, L_END(b));
 }
 
 void			offset_sub(t_big a, t_big b, int offset)
 {
-	add_sub((long*)(a->data + offset), (long*)b->data, lb + (b->len >> 3));
+	add_sub((long*)(a->data + offset), (long*)b->data, L_END(b));
 }
 
 void			add_data(long *la, long *lb, long *lb_end)
