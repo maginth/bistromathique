@@ -6,24 +6,24 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 21:26:32 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:46:34 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h";
 
-t_big				*eval(char **str, char **oper, t_fbig op)
+t_big				eval(char **str, char **oper, t_fbig op)
 {
 	(*str)++;
 	return (**str == *oper[0] ? eval_op(eval(str), str, *oper[1], op) \
 			: read_struct(str, oper));
 }
 
-t_big				*eval_prio(t_big *a, char **str, t_fbig op)
+t_big				eval_prio(t_big a, char **str, t_fbig op)
 {
 	char			ops;
-	t_big			*b;
-	t_big			*tmp;
+	t_big			b;
+	t_big			tmp;
 
 	if (!a)
 	{
@@ -35,12 +35,12 @@ t_big				*eval_prio(t_big *a, char **str, t_fbig op)
 	return (eval_prio(op[ops](a, b), str, oper));
 }
 
-t_big				*eval_op(t_big *a, char **str, char close, \
+t_big				eval_op(t_big a, char **str, char close, \
 							t_fbig op)
 {
-	t_big			*b;
+	t_big			b;
 	char			ops;
-	t_big			*tmp;
+	t_big			tmp;
 
 	if (!a || **str == close)
 	{

@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 22:04:04 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:46:05 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int				eval_expr(char *base, char *oper, char *str)
 {
-	t_big	*res;
+	t_big	res;
 	int		i;
 	t_fbig	op;
 
@@ -32,6 +32,6 @@ int				eval_expr(char *base, char *oper, char *str)
 		return (0);
 	}
 	res = eval_op(eval(&str, &oper, op), &str, '\0', op);
-	ft_putstr(ret->data, 1);
+	ft_putconvert(res->data, 1);
 	return (1);
 }

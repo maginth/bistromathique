@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/08 22:29:50 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:44:30 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,15 @@ t_big		*init_fptr(char *oper)
 	op[oper[6]] = &mod_big;
 
 	return (op);
+}
+
+void		ft_putconvert(char *base, t_big a)
+{
+	int		i;
+
+	i = a->len;
+	while (i--)
+	{
+		write(1, &base[a->data[i]], 1);
+	}
 }

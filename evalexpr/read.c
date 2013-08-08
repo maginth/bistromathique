@@ -6,13 +6,13 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:19:39 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 21:29:14 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:46:46 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_big				*read_struct(char **str, char **oper)
+t_big				read_struct(char **str, char **oper)
 {
-	t_big			*res;
+	t_big			res;
 	int				n;
 	int				i;
 	int				sign;
