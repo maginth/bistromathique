@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 22:46:34 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/08 22:58:38 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ t_big				eval_op(t_big a, char **str, char close, \
 		}
 		return (eval_op(op[ops](a, tmp), str, close, op));
 	}
-	return (eval_op(op[ops](a, b), str, close, op);
+	return (eval_op(op[ops](a, b), str, close, op));
 }
