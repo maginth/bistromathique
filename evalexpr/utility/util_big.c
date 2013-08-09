@@ -6,16 +6,16 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 21:49:20 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:07:03 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistro.h"
+#include "../../includes/bistromatique.h"
 #include <unistd.h>
 
 t_big		create_big(int len, int fill_zero)
 {
-	t_big		res;
+	t_big			res;
 	long			*i;
 	long			*end;
 
@@ -39,14 +39,14 @@ void		extend_buf(t_big *x)
 {
 	int			*i;
 	t_big		res;
-	ulong		*xdata;
-	ulong		*resdata;
+	t_ulong		*xdata;
+	t_ulong		*resdata;
 
 	res = create_big((*x)->len, 0);
 	res->sgn = (*x)->sgn;
 	i = ((*x)->len >> 3) + 1;
-	resdata = (ulong*)res->data;
-	xdata = (ulong*)(*x)->data;
+	resdata = (t_ulong*)res->data;
+	xdata = (t_ulong*)(*x)->data;
 	while (i--) 
 	{
 		resdata[i] = xdata[i];

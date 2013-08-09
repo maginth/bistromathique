@@ -6,11 +6,13 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:56:31 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 20:35:57 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:07:31 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistro.h"
+#include "../../includes/bistromatique.h"
+#include "../../includes/const.h"
+#include <stdlib.h>
 
 t_big			*create_table(t_big x)
 {
@@ -38,7 +40,7 @@ void			destruct_table(t_big *table)
 	}
 }
 
-t_big	   	  get_mult(uchar c, t_big *table)
+t_big	   	  get_mult(t_uchar c, t_big *table)
 {
 	if (!table[c])
 	{
@@ -50,10 +52,10 @@ t_big	   	  get_mult(uchar c, t_big *table)
 
 int				cmp_big(t_big a, t_big b, int offset)
 {
-	ulong		*ia;
-	ulong		*ib;
-	ulong		*end;
-	ulong		res;
+	t_ulong		*ia;
+	t_ulong		*ib;
+	t_ulong		*end;
+	t_ulong		res;
 
 	res = a->len - b->len - offset;
 	if (res == 0)

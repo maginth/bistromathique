@@ -6,11 +6,12 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:49:24 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 20:31:46 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:08:02 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistro.h"
+#include "../../includes/bistromatique.h"
+#include "../../includes/const.h"
 
 t_big		add_big(t_big a, t_big b)
 {

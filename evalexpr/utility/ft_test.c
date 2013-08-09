@@ -6,11 +6,13 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/08 22:44:30 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:06:33 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistromathique.h"
+#include "../../includes/bistromathique.h"
+#include "../../includes/const.h"
+#include <unistd.h>
 
 void		ft_putstr(char *str, int output)
 {
@@ -26,7 +28,7 @@ int			ft_length_nbr(char *str)
 	int		i;
 
 	i = 0;
-	while (g_tab_test[str[i]])
+	while (g_tab_test[str[i]] >= 0)
 	{
 		i++;
 	}
@@ -63,7 +65,7 @@ int			init_test_tab(char *base, char *oper)
 
 t_big		*init_fptr(char *oper)
 {
-	t_fbig		op;
+	t_fbig	op;
 
 	op[oper[2]] = &add_big;
 	op[oper[3]] = &add_big;

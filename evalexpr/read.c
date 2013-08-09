@@ -6,11 +6,14 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:19:39 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 22:46:46 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:06:08 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_big				read_struct(char **str, char **oper)
+#include "../includes/bistromathique.h"
+#include "../includes/const.h"
+
+t_big				read_struct(char **str, char *oper)
 {
 	t_big			res;
 	int				n;
@@ -19,9 +22,9 @@ t_big				read_struct(char **str, char **oper)
 
 	sign = 1;
 	i = 0;
-	while (**str == *oper[3] || **str == *oper[2] || g_tab_test[**str] == 0)
+	while (**str == oper[3] || **str == oper[2] || g_tab_test[**str] == 0)
 	{
-		if (**str == *oper[3])
+		if (**str == oper[3])
 		{
 			sign = -sign;
 		}

@@ -1,3 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2013/08/09 10:43:15 by ybouvet           #+#    #+#             */
+/*   Updated: 2013/08/09 11:12:35 by ybouvet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/bistromathique.h"
+#include "../../includes/const.h"
+
 t_big_char		*add_big_char(t_big_char a, t_big_char b, int offset)
 {
 	long		*la;

@@ -6,12 +6,12 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 23:27:56 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:05:19 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistro.h"
-#include "const.h"
+#include "../includes/bistromathique.h"
+#include "../includes/const.h"
 
 void			init_global(char *base)
 {

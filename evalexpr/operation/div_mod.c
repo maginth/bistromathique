@@ -6,11 +6,12 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:51:37 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/08 22:45:28 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:08:25 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistro.h"
+#include "../../includes/bistromatique.h"
+#include "../../includes/const.h"
 #include <stdlib.h>
 
 t_big		div_big(t_big a, t_big b)
@@ -58,7 +59,7 @@ t_big		divmod_big(t_big a, t_big b)
 void      divmod_data(t_big a, t_big *mult_b, t_big res)
 {
 	t_big		m;
-	uchar		digit;
+	t_uchar		digit;
 	int			offset;
 	int			*lead_a;
 	int			inv_lead_b;

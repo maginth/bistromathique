@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/05 15:26:52 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/08 17:39:20 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:11:32 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
-#include "bistromathique.h"
+#include "includes/bistromathique.h"
 
 static size_t		ft_strlen(char *strlen)
 {
