@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:49:24 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:28:18 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:40:09 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ t_big		add_big(t_big a, t_big b)
 	}
 	if (a->sgn == b->sgn && a->buf_len <= a->len)
 	{
-		extend_buf(a);
+		extend_buf(&a);
 	}
 	(a->sgn == b->sgn ? offset_add : offset_sub)(a, b, 0);
 	destruct_big(b);
-	ajust_length(a);
+	adjust_length(a);
 	return (a);
 }		
 
@@ -39,12 +39,13 @@ void			offset_add(t_big a, t_big b, int offset)
 
 void			offset_sub(t_big a, t_big b, int offset)
 {
-	add_sub((long*)(a->data + offset), (long*)b->data, L_END(b));
+	sub_data((long*)(a->data + offset), (long*)b->data, L_END(b));
 }
 
 void			add_data(long *la, long *lb, long *lb_end)
 {
 	t_ulong		ret;
+	t_ulong		res;
 	
 	ret = 0;
 	while (lb != lb_end)
@@ -67,6 +68,7 @@ void			add_data(long *la, long *lb, long *lb_end)
 void			sub_data(long *la, long *lb, long *lb_end)
 {
 	t_ulong		ret;
+	t_ulong		res;
 	
 	ret = 0;
 	while (lb != lb_end)

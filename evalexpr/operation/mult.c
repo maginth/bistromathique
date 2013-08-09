@@ -6,11 +6,12 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 20:37:21 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:14:43 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:53:11 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bistromathique.h"
+#include "../../includes/const.h"
 
 t_big			mult_big(t_big a, t_big b)
 {
@@ -19,7 +20,7 @@ t_big			mult_big(t_big a, t_big b)
 
 	if (b->len > a->len)
 	{
-		mult_big(b, a, dest);
+		mult_big(b, a);
 	}
 	if (b->len == 0)
 	{
@@ -42,13 +43,13 @@ void			mult_data(t_big *mult_a, t_big b, t_big res)
 	int				offset;
 
 	offset = 0;
-	ib = dest->data;
-	end = ib->end;
+	ib = b->data;
+	end = b->data + b->len;
 	while (ib != end)
 	{
 		if (*ib)
 		{
-			offset_add(res, get_mult(*ib, a_mult), offset);
+			offset_add(res, get_mult(*ib, mult_a), offset);
 		}
 		ib++;
 		offset++;

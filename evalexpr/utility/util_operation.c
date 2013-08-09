@@ -6,11 +6,11 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:56:31 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:07:31 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 13:20:51 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bistromatique.h"
+#include "../../includes/bistromathique.h"
 #include "../../includes/const.h"
 #include <stdlib.h>
 
@@ -36,18 +36,21 @@ void			destruct_table(t_big *table)
 	i = g_base;
 	while (--i)
 	{
-		destruct_big(mult_a[i]);
+		destruct_big(table[i]);
 	}
 }
 
 t_big	   	  get_mult(t_uchar c, t_big *table)
 {
+	t_big		half;
+
+	half = cp_big(get_mult((c >> 1) + (c & 1), table)); 
 	if (!table[c])
 	{
-		table[c] = offset_add(cp_big(get_mult((c >> 1) + (c & 1), table),
-								get_mult(c >> 1, table)), 0);
+		offset_add(half, get_mult(c >> 1, table), 0);
+		table[c] = half; 
 	}
-	return (table[c]);
+	return (half);
 }
 
 int				cmp_big(t_big a, t_big b, int offset)
@@ -60,8 +63,8 @@ int				cmp_big(t_big a, t_big b, int offset)
 	res = a->len - b->len - offset;
 	if (res == 0)
 	{
-		ia = (long*)(a->data + a->len) - 1;
-		ib = (long*)(b->data + b->len) - 1;
+		ia = (t_ulong*)(a->data + a->len) - 1;
+		ib = (t_ulong*)(b->data + b->len) - 1;
 		end = ib - ((b->len + 7) >> 3);
 		while (ib != end && *ia == *ib)
 		{

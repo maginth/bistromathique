@@ -6,11 +6,11 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:51:37 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:26:04 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:46:20 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bistromatique.h"
+#include "../../includes/bistromathique.h"
 #include "../../includes/const.h"
 #include <stdlib.h>
 
@@ -56,7 +56,7 @@ t_big		divmod_big(t_big a, t_big b)
 	return (g_zero_big);
 }
 
-void      divmod_data(t_big a, t_big *mult_b, t_big res)
+void		divmod_data(t_big a, t_big *mult_b, t_big res)
 {
 	t_big		m;
 	t_uchar		digit;
@@ -73,7 +73,7 @@ void      divmod_data(t_big a, t_big *mult_b, t_big res)
 		if (digit)
 		{
 			m = get_mult(digit, mult_b); 
-			digit -= cmp_big(m, a) > 0;
+			digit -= cmp_big(a, m, offset) < 0;
 			if (digit)
 			{
 				m = get_mult(digit, mult_b);

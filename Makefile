@@ -6,7 +6,7 @@
 #    By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/08/09 10:45:53 by ybouvet           #+#    #+#              #
-#    Updated: 2013/08/09 11:15:04 by mguinin          ###   ########.fr        #
+#    Updated: 2013/08/09 12:57:37 by mguinin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,6 @@ SRC =		main.c \
 			evalexpr/operation/add_sub.c \
 			evalexpr/operation/div_mod.c \
 			evalexpr/operation/mult.c \
-			evalexpr/operation/operation.c \
 			evalexpr/utility/ft_test.c \
 			evalexpr/utility/util_big.c \
 			evalexpr/utility/util_operation.c \

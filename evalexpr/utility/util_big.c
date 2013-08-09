@@ -6,14 +6,15 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:23:42 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 13:15:04 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bistromatique.h"
-#include <unistd.h>
+#include "../../includes/bistromathique.h"
+#include "../../includes/const.h"
+#include <stdlib.h>
 
-t_big		create_big(int len, int fill_zero)
+t_big			create_big(int len, int fill_zero)
 {
 	t_big			res;
 	long			*i;
@@ -35,27 +36,35 @@ t_big		create_big(int len, int fill_zero)
 	return (res);
 }
 
-void		extend_buf(t_big *x)
+t_big			cp_big(t_big x)
 {
-	int			*i;
+	int			i;
 	t_big		res;
 	t_ulong		*xdata;
 	t_ulong		*resdata;
 
-	res = create_big((*x)->len, 0);
-	res->sgn = (*x)->sgn;
-	i = ((*x)->len >> 3) + 1;
+	res = create_big(x->len, 0);
+	res->sgn = x->sgn;
+	i = (x->len >> 3) + 1;
 	resdata = (t_ulong*)res->data;
-	xdata = (t_ulong*)(*x)->data;
+	xdata = (t_ulong*)x->data;
 	while (i--) 
 	{
 		resdata[i] = xdata[i];
 	}
-	destruct_big(*x);
-	return (res)
+	return (res);
 }
-	
-void			destruct_big(t_big *x)
+
+void		extend_buf(t_big *x)
+{
+	t_big		tmp;
+
+	tmp = cp_big(*x);
+	destruct_big(*x);
+	*x = tmp;
+}
+
+void			destruct_big(t_big x)
 {
 	if (x && x != g_zero_big)
 	{
@@ -64,7 +73,7 @@ void			destruct_big(t_big *x)
 	}
 }
 
-void			ajust_length(t_big x)
+void			adjust_length(t_big x)
 {
 	while (x->data[x->len])
 	{
