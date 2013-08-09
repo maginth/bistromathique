@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 20:37:21 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:08:50 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:14:43 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ t_big			mult_big(t_big a, t_big b)
 	{
 		mult_big(b, a, dest);
 	}
+	if (b->len == 0)
+	{
+		return (g_zero_big);
+	}
 	mult_a = create_table(a);
-	res = create_big(a->size + b->size + 1, 1);
+	res = create_big(a->len + b->len + 1, 1);
 	res->sgn = a->sgn * b->sgn;
 	mult_data(mult_a, b, res);
 	destruct_table(mult_a);

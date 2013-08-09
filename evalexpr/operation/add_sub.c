@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:49:24 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:08:02 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:03:53 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_big		add_big(t_big a, t_big b)
 	{
 		return (add_big(b, a));
 	}
-	if (a->sgn == b->sgn && a->buf_len >= a->len)
+	if (a->sgn == b->sgn && a->buf_len <= a->len)
 	{
 		extend_buf(a);
 	}
@@ -44,12 +44,12 @@ void			offset_sub(t_big a, t_big b, int offset)
 
 void			add_data(long *la, long *lb, long *lb_end)
 {
-	long		ret;
+	t_ulong		ret;
 	
 	ret = 0;
 	while (lb != lb_end)
 	{
-		res = *la + *lb + g_comp_8 + ret;
+		res = *la + *lb + g_compl_8 + ret;
 		ret = res >> 63;
 		*la = res - ((res & RET_BITS)>>7) * g_compl;
 		la++;
@@ -57,7 +57,7 @@ void			add_data(long *la, long *lb, long *lb_end)
 	}
 	while (ret)
 	{
-		res = *la + g_comp_8 + ret;
+		res = *la + g_compl_8 + ret;
 		ret = res >> 63;
 		*la = res - ((res & RET_BITS)>>7) * g_compl;
 		la++;
@@ -66,7 +66,7 @@ void			add_data(long *la, long *lb, long *lb_end)
 
 void			sub_data(long *la, long *lb, long *lb_end)
 {
-	long		ret;
+	t_ulong		ret;
 	
 	ret = 0;
 	while (lb != lb_end)
@@ -79,7 +79,7 @@ void			sub_data(long *la, long *lb, long *lb_end)
 	}
 	while (ret)
 	{
-		res = *la + ULONG_M1;
+		res = *la - 1;
 		ret = res >> 63;
 		*la = res - ((res & RET_BITS)>>7) * g_compl;
 		la++;

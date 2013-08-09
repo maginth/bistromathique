@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:07:03 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:23:42 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		extend_buf(t_big *x)
 	
 void			destruct_big(t_big *x)
 {
-	if (x)
+	if (x && x != g_zero_big)
 	{
 		free(x->data - 8);
 		free(x);
@@ -70,9 +70,8 @@ void			ajust_length(t_big x)
 	{
 		x->len++;
 	}
-	while (!x->data[x->len])
+	while (x->len && !x->data[x->len - 1])
 	{
 		x->len--;
 	}
-	x->len++;
 }
