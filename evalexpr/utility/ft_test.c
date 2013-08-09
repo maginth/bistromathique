@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/09 11:06:33 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:36:29 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			init_test_tab(char *base, char *oper)
 	return (0);
 }
 
-t_big		*init_fptr(char *oper)
+t_fbig		*init_fptr(char *oper)
 {
 	t_fbig	op;
 

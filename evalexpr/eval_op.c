@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:05:45 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:52:54 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 t_big				eval(char **str, char *oper, t_fbig op)
 {
 	(*str)++;
-	return (**str == oper[0] ? eval_op(eval(str), str, oper[1], op) \
+	return (**str == oper[0] ? eval_op(eval(str, oper, op), str, oper[1], op) \
 			: read_struct(str, oper));
 }
 
