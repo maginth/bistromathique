@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/09 11:36:29 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 12:17:33 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			init_test_tab(char *base, char *oper)
 
 t_fbig		*init_fptr(char *oper)
 {
-	t_fbig	op;
+	t_fbig	*op;
 
 	op[oper[2]] = &add_big;
 	op[oper[3]] = &add_big;
