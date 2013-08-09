@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:48:11 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:35:15 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 23:34:35 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 # define RET_BITS 0x8080808080808080
 # define EXTRA_BUF 256
 # define L_END(x) (((long*)x->data) + (((x)->len + 7) >> 3)) 
-# define SYNTAXE_ERROR_MSG "syntar error\n"
+# define SYNTAXE_ERROR_MSG "syntax error\n"
 # define MINUS -5
 # define PLUS -4
 # define ZERO 0
-# include <stdio.h> // <------------------------------- !!!!!!!!!!!!!!!!
 
 typedef unsigned long	t_ulong;
 typedef unsigned char	t_uchar;
@@ -32,18 +31,32 @@ typedef	struct			s_big_char
 }						t_big_char;
 typedef t_big_char		*t_big;
 typedef t_big			(*t_fbig)(t_big, t_big);
+typedef struct			s_element
+{
+	int					sgn;
+	struct s_element	*a;
+	struct s_element	*b;
+	t_fbig				op;
+	char				*start;
+	int					len;
+}						t_element;
+typedef t_element		*t_elem;
 
+t_elem				parse(char **str);
+t_elem				parse_prio(t_elem a, char **str, char close);
+t_elem				parse_op(t_elem a, char **str, char close);
+t_elem				create_elem(t_elem a, t_elem b, t_fbig op);
+int					read_sgn(char **res);
+t_elem				parse_digit(char **s);
 t_big				create_big(int len, int init_zero);
 t_big				add_big(t_big a, t_big b);
 t_big				*create_table(t_big x);
 t_big				mult_big(t_big a, t_big b);
-int					cmp_big(t_big a, t_big b, int offset);
+long				cmp_big(t_big a, t_big b, int offset);
 t_big				divmod_big(t_big a, t_big b);
 int					eval_expr(char *base, char *oper, char *str);
-t_big				eval(char **str);
-t_big				eval_op(t_big a, char **str, char close);
-t_big				eval_prio(t_big a, char **str);
-t_big				read_struct(char **str);
+t_big				eval(t_elem elem);
+t_big				read_struct(t_elem elem);
 void				ft_putstr(char *str, int output);
 int					ft_length_nbr(char *str);
 int					init_test_tab(char *base, char *oper);

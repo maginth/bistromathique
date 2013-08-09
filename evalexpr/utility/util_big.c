@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 15:19:36 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 23:26:19 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ t_big			create_big(int len, int fill_zero)
 
 	res = malloc(sizeof(*res));
 	res->buf_len = ((len + EXTRA_BUF) | 7) + 1;
-	t_uchar *rrr = malloc(res->buf_len + 16);
-	res->data = rrr + 8;
-	printf("mem addr %ld %ld\n", (long)rrr, (long)res);
+	res->data = malloc(res->buf_len + 32) + 16;
 	res->len = len;
 	res->sgn = 1;
 	*(long*)(res->data - 8) = 0;
 	i = (long*)res->data + (fill_zero ? 0 : (res->len >> 3) - 1);
-	end = (long*)res->data + res->buf_len + 1;
+	end = (long*)res->data + (res->buf_len >> 3) + 1;
 	while (i != end)
 	{
 		*i = 0;
@@ -68,10 +66,9 @@ void		extend_buf(t_big *x)
 
 void			destruct_big(t_big x)
 {
-	if (x && x != g_zero_big)
+	if (0 && x && x != g_zero_big)
 	{
-	printf("free mem addr %ld\n", (long)(x));
-		free(x->data - 8);
+		free(x->data - 16);
 		free(x);
 	}
 }

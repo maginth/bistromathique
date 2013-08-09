@@ -6,7 +6,7 @@
 #    By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/08/09 10:45:53 by ybouvet           #+#    #+#              #
-#    Updated: 2013/08/09 13:47:31 by mguinin          ###   ########.fr        #
+#    Updated: 2013/08/09 19:36:03 by mguinin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,8 @@ NAME =		calc
 
 SRC =		main.c \
 			evalexpr/eval_expr.c \
-			evalexpr/eval_op.c \
+			evalexpr/parse_op.c \
+			evalexpr/parse.c \
 			evalexpr/read.c \
 			evalexpr/operation/add_sub.c \
 			evalexpr/operation/div_mod.c \

@@ -6,12 +6,25 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:50:00 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 23:34:16 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bistromathique.h"
 #include "../includes/const.h"
+
+t_big               eval(t_elem elem)
+{
+	t_big	res;
+
+	if (!elem->op)
+	{
+		return (read_struct(elem));
+	}
+	res = elem->op(eval(elem->a), eval(elem->b));
+	res->sgn *= elem->sgn;
+	return (res);
+}
 
 int				ft_strlen2(char *strlen)
 {
@@ -47,7 +60,7 @@ void			init_global(char *base, char *oper)
 
 int				eval_expr(char *base, char *oper, char *str)
 {
-	t_big		res;
+	t_elem		parsed;
 	int			i;
 
 	i = 0;
@@ -57,17 +70,16 @@ int				eval_expr(char *base, char *oper, char *str)
 	}
 	init_global(base, oper);
 	g_op = init_fptr();
-	while (g_tab_test[(int)str[i]] != -1)
+	parsed = parse(&str);
+	if (parsed)
 	{
-		i++;
+		parsed = parse_op(parsed, &str, '\0');
+		if (parsed)
+		{
+			ft_putconvert(base, eval(parsed));
+			return (0);
+		}
 	}
-	if (str[i] != '\0')
-	{
-		printf("error unvalid char %d\n", str[i]);
-		ft_putstr(SYNTAXE_ERROR_MSG, 2);
-		return (1);
-	}
-	res = eval_op(eval(&str), &str, '\0');
-	ft_putconvert(base, res);
-	return (0);
+	ft_putstr(SYNTAXE_ERROR_MSG, 2);
+	return (2);
 }

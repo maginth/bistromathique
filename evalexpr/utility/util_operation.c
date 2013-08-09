@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:56:31 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 13:20:51 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 23:02:20 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,22 @@ t_big	   	  get_mult(t_uchar c, t_big *table)
 {
 	t_big		half;
 
-	half = cp_big(get_mult((c >> 1) + (c & 1), table)); 
 	if (!table[c])
 	{
+		half = cp_big(get_mult((c >> 1) + (c & 1), table)); 
 		offset_add(half, get_mult(c >> 1, table), 0);
+		adjust_length(half);
 		table[c] = half; 
 	}
-	return (half);
+	return (table[c]);
 }
 
-int				cmp_big(t_big a, t_big b, int offset)
+long			cmp_big(t_big a, t_big b, int offset)
 {
 	t_ulong		*ia;
 	t_ulong		*ib;
 	t_ulong		*end;
-	t_ulong		res;
+	int			res;
 
 	res = a->len - b->len - offset;
 	if (res == 0)

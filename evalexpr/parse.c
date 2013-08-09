@@ -6,12 +6,25 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/09 16:37:30 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 17:44:31 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 22:50:18 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bistromathique.h"
-#define NEXT(x) &(++(*str))
+#include <stdlib.h>
+#include "../includes/bistromathique.h"
+#include "../includes/const.h"
+
+t_elem		create_elem(t_elem a, t_elem b, t_fbig op)
+{
+	t_elem		res;
+
+	res = malloc(sizeof(*res));
+	res->sgn = 1;
+	res->a = a;
+	res->b = b;
+	res->op = op;
+	return (res);
+}
 
 int			read_sgn(char **res)
 {
@@ -32,35 +45,30 @@ int			read_sgn(char **res)
 	return (sign);
 }
 
-char		*read_digit(t_parse_big x, char *str)
+t_elem		parse_digit(char **s)
 {
-	int			len;
-	t_uchar		digit;
+	char		digit;
+	t_elem		x;
+	char		*str;
 
-	digit = g_tab_test[(int)*str];
+	str = *s;
+	x = create_elem(NULL, NULL, NULL);
 	x->start = str;
-	while (digit >= 0)
+	while ((digit = g_tab_test[(int)*str]) >= 0)
 	{
 		*str = digit;
-		*str++;
-		digit = g_tab_test[(int)*str];
+		str++;
 	}
 	if (x->start == str)
 	{
 		return (NULL);
 	}
-	while (*x->start == 0)
+	x->len = str - x->start;
+	while (x->len && *x->start == 0)
 	{
 		x->start++;
+		x->len--;
 	}
-	x->len = *str - x->start;
-	return (str);
+	*s = str;
+	return (x);
 }
-
-t_elem		*parse_operation(t_elem elem, char *str, int level)
-{
-	read_sgn(*str);
-	
-	
-
-
