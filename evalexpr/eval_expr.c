@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:05:19 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:23:42 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void			init_global(char *base)
 	g_compl = 256 - g_base;
 	g_compl_8 = g_compl * 0x0101010101010101;
 	g_zero_big = create_big(0, 0);
+	g_little_endian = *(char*)&g_1ul;
 }
 
 int				eval_expr(char *base, char *oper, char *str)
