@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:32:11 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:35:56 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_big				eval_op(t_big a, char **str, char close)
 	}
 	ops = **str;
 	(*str) += (**str != g_minus);
-	b = eval (str);
+	b = eval(str);
 	if (**str == g_minus || **str == g_plus)
 	{
 		tmp = eval_prio(b, str);

@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:19:39 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:19:51 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:44:50 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_big				read_struct(char **str)
 	n = res->len;
 	while (n--)
 	{
-		res->data[i] = (*str)[n];
+		res->data[i] = g_tab_test[(int)(*str)[n]];
 		i++;
 	}
 	*str = (*str) + i;

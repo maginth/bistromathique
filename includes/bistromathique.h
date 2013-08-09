@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:48:11 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:32:51 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:35:15 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define MINUS -5
 # define PLUS -4
 # define ZERO 0
+# include <stdio.h> // <------------------------------- !!!!!!!!!!!!!!!!
 
 typedef unsigned long	t_ulong;
 typedef unsigned char	t_uchar;

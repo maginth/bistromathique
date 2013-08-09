@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 14:33:16 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:50:00 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int				eval_expr(char *base, char *oper, char *str)
 	}
 	if (str[i] != '\0')
 	{
+		printf("error unvalid char %d\n", str[i]);
 		ft_putstr(SYNTAXE_ERROR_MSG, 2);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/09 14:27:41 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:51:41 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int			init_test_tab(char *base, char *oper)
 	int		i;
 
 	i = 256;
-	while (i--)
+	while (i)
 	{
-		g_tab_test[i] = -1;
+		g_tab_test[--i] = -1;
 	}
 	while (*base)
 	{
