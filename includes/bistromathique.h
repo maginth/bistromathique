@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:48:11 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 11:18:06 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:26:23 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define RET_BITS 0x8080808080808080
 # define EXTRA_BUF 256
 # define L_END(x) (((long*)x->data) + (((x)->len + 7) >> 3)) 
+# define SYNTAXE_ERROR_MSG "syntar error"
+
 typedef	struct			s_big_char
 {
 	char		*data;
@@ -23,7 +25,7 @@ typedef	struct			s_big_char
 	int			sgn;
 }						t_big_char;
 
-typedef	t_big_char		*t_big;
+typedef t_big_char		*t_big;
 typedef unsigned long	t_ulong;
 typedef unsigned char	t_uchar;
 typedef t_big			(*t_fbig)(t_big, t_big);
@@ -42,5 +44,6 @@ void		ft_putstr(char *str, int output);
 int			ft_length_nbr(char *str);
 int			init_test_tab(char *base, char *oper);
 t_big		init_fptr(char *oper);
+int			ft_strlen(char *str);
 
 #endif /* BISTRO_H */

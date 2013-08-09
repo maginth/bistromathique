@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/05 15:26:52 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/09 11:11:32 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:20:39 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static unsigned	int	ft_uatoi(char *nbr)
 static int			ft_fill_buff(char* buf, size_t size)
 {
 	size_t			size_read;
-	size_t			ret;
+	ssize_t			ret;
 
 	size_read = 0;
 	ret = read(0, buf, size);

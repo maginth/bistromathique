@@ -6,15 +6,16 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/08 19:54:21 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 10:45:15 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:23:05 by ybouvet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const ulong	g_1ul = 1UL;
-const int	g_little_endian = *(char*)&g_1ul;
-uchar		g_comp;
-ulong		g_comp_8;
+const t_ulong	g_1ul = 1UL;
+const int	g_little_endian;
+t_uchar		g_compl;
+t_ulong		g_compl_8;
 t_big		g_zero_big;
+t_uchar		g_base;
 
 /*
 ** defining a table of integer that will be used for the tests
