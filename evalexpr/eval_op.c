@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:14:33 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:20:57 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:32:11 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "../includes/bistromathique.h"
 #include "../includes/const.h"
 
-t_big               eval(char **str, t_fbig *op)
+t_big               eval(char **str)
 {
-	(*str)++;
-	return (**str == g_oper[0] ? eval_op(eval(str, op), str, g_oper[1], op) \
+	return (**str == g_bra ? \
+			eval_op(eval(str), str, g_ket) \
 			: read_struct(str));
 }
 
-t_big				eval_prio(t_big a, char **str, t_fbig *op)
+t_big				eval_prio(t_big a, char **str)
 {
 	char			ops;
 	t_big			b;
@@ -32,12 +32,11 @@ t_big				eval_prio(t_big a, char **str, t_fbig *op)
 	}
 	ops = **str;
 	(*str)++;
-	b = eval(str, op);
-	return (eval_prio(op[(int)ops](a, b), str, op));
+	b = eval(str);
+	return (eval_prio(g_op[(int)ops](a, b), str));
 }
 
-t_big				eval_op(t_big a, char **str, char close, \
-							t_fbig *op)
+t_big				eval_op(t_big a, char **str, char close)
 {
 	t_big			b;
 	char			ops;
@@ -49,16 +48,16 @@ t_big				eval_op(t_big a, char **str, char close, \
 		return (a);
 	}
 	ops = **str;
-	(*str) += (g_tab_test[(int)**str] != -5);
-	b = eval (str, op);
-	if (g_tab_test[(int)**str] == MINUS || g_tab_test[(int)**str] == PLUS)
+	(*str) += (**str != g_minus);
+	b = eval (str);
+	if (**str == g_minus || **str == g_plus)
 	{
-		tmp = eval_prio(b, str, op);
+		tmp = eval_prio(b, str);
 		if (!tmp)
 		{
 			return (NULL);
 		}
-		return (eval_op(op[(int)ops](a, tmp), str, close, op));
+		return (eval_op(g_op[(int)ops](a, tmp), str, close));
 	}
-	return (eval_op(op[(int)ops](a, b), str, close, op));
+	return (eval_op(g_op[(int)ops](a, b), str, close));
 }

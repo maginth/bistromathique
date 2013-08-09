@@ -6,7 +6,7 @@
 /*   By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/06 17:08:57 by ybouvet           #+#    #+#             */
-/*   Updated: 2013/08/09 13:02:55 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:27:41 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ int			init_test_tab(char *base, char *oper)
 		g_tab_test[(int)*oper] = i--;
 		oper++;
 	}
-	return (0);
+	return (1);
 }
 
-t_fbig		*init_fptr(char *oper)
+t_fbig		*init_fptr()
 {
 	t_fbig	*op;
 
 	op = malloc(sizeof(*op) * 256);
-	op[(int)oper[2]] = &add_big;
-	op[(int)oper[3]] = &add_big;
-	op[(int)oper[4]] = &mult_big;
-	op[(int)oper[5]] = &div_big;
-	op[(int)oper[6]] = &mod_big;
+	op[(int)g_plus] = &add_big;
+	op[(int)g_minus] = &add_big;
+	op[(int)g_mult] = &mult_big;
+	op[(int)g_div] = &div_big;
+	op[(int)g_mod] = &mod_big;
 
 	return (op);
 }
@@ -83,6 +83,10 @@ void		ft_putconvert(char *base, t_big a)
 	int		i;
 
 	i = a->len;
+	if (a->sgn == -1)
+	{
+		write(1, "-", 1);
+	}
 	while (i--)
 	{
 		write(1, &base[(int)(a->data[i])], 1);

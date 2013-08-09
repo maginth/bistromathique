@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:13:03 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:18:32 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:33:16 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,37 @@ void			init_global(char *base, char *oper)
 	g_zero_big = create_big(0, 0);
 	g_little_endian = *(char*)&ul1;
 	g_oper = oper;
+	g_bra = oper[0];
+	g_ket = oper[1];
+	g_plus = oper[2];
+	g_minus = oper[3];
+	g_mult = oper[4];
+	g_div = oper[5];
+	g_mod = oper[6];
 }
 
 int				eval_expr(char *base, char *oper, char *str)
 {
 	t_big		res;
 	int			i;
-	t_fbig		*op;
 
 	i = 0;
-	init_test_tab(base, oper);
+	if (!init_test_tab(base, oper))
+	{
+		return (1);
+	}
 	init_global(base, oper);
-	op = init_fptr(oper);
+	g_op = init_fptr();
 	while (g_tab_test[(int)str[i]] != -1)
 	{
 		i++;
 	}
-	if (i != ft_strlen2(str))
+	if (str[i] != '\0')
 	{
 		ft_putstr(SYNTAXE_ERROR_MSG, 2);
-		return (0);
+		return (1);
 	}
-	res = eval_op(eval(&str, op), &str, '\0', op);
+	res = eval_op(eval(&str), &str, '\0');
 	ft_putconvert(base, res);
-	return (1);
+	return (0);
 }

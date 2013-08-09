@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/02 14:19:39 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 12:21:40 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:19:51 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ t_big				read_struct(char **str)
 
 	sign = 1;
 	i = 0;
-	while (**str == g_oper[3] || **str == g_oper[2] || \
-		   g_tab_test[(int)**str] == ZERO)
+	while (g_tab_test[(int)**str] <= ZERO)
 	{
-		if (**str == g_oper[3])
+		if (**str == g_minus)
 		{
 			sign = -sign;
 		}

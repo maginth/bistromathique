@@ -6,7 +6,7 @@
 #    By: ybouvet <yann.bouvet@voila.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/08/09 10:45:53 by ybouvet           #+#    #+#              #
-#    Updated: 2013/08/09 12:57:37 by mguinin          ###   ########.fr        #
+#    Updated: 2013/08/09 13:47:31 by mguinin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -37,7 +37,7 @@ $(NAME):	$(OBJ)
 clean:
 			/bin/rm -f $(OBJ)
 
-flcean:		clean
+fclean:		clean
 			/bin/rm -f $(NAME)
 
 re:			fclean all

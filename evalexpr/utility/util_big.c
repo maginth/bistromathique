@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 18:01:57 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 13:15:04 by mguinin          ###   ########.fr       */
+/*   Updated: 2013/08/09 14:04:29 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_big			create_big(int len, int fill_zero)
 
 	res = malloc(sizeof(*res));
 	res->buf_len = ((len + EXTRA_BUF) | 7) + 1;
-	res->data = 8 + malloc(res->buf_len + 16);
+	res->data = malloc(res->buf_len + 16) + 8;
 	res->len = len;
 	res->sgn = 1;
 	*(long*)(res->data - 8) = 0;
