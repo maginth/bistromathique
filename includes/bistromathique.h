@@ -6,7 +6,7 @@
 /*   By: mguinin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/07 12:48:11 by mguinin           #+#    #+#             */
-/*   Updated: 2013/08/09 10:36:34 by ybouvet          ###   ########.fr       */
+/*   Updated: 2013/08/09 11:18:06 by mguinin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef	struct			s_big_char
 	int			sgn;
 }						t_big_char;
 
-typedef	*t_big_char		t_big;
+typedef	t_big_char		*t_big;
 typedef unsigned long	t_ulong;
 typedef unsigned char	t_uchar;
 typedef t_big			(*t_fbig)(t_big, t_big);
