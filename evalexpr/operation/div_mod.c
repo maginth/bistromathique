@@ -61,23 +61,25 @@ void		divmod_data(t_big a, t_big *mult_b, t_big res)
 	t_big		m;
 	t_uchar		digit;
 	int			offset;
-	int			*lead_a;
-	int			inv_lead_b;
+	t_uchar		*lead_a;
+	t_uchar		lead_b;
 
-	inv_lead_b = 0x10000 / mult_b[1]->data[mult_b[1]->len - 1];
+	lead_a = mult_b[1]->data + mult_b[1]->len - 2;
+	lead_b = lead_a[1] * g_base + lead_a[0];
 	offset = res->len;
-	lead_a = (int*)(a->data + a->len - 1);
+	lead_a = (t_uchar*)(a->data + a->len - 2);
 	while (offset--)
 	{
-		digit = (*lead_a * inv_lead_b) >> 16;
+		digit = ((lead_a[2] * g_base + lead_a[1]) * g_base + *lead_a + 1) / lead_b;
 		if (digit)
 		{
-			m = get_mult(digit, mult_b); 
+			m = get_mult(digit, mult_b);
 			digit -= cmp_big(a, m, offset) < 0;
 			if (digit)
 			{
 				m = get_mult(digit, mult_b);
 				offset_sub(a, m, offset);
+				adjust_length(a);
 			}
 		}
 		res->data[offset] = digit;

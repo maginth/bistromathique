@@ -45,23 +45,18 @@ int			init_test_tab(char *base, char *oper)
 	{
 		g_tab_test[--i] = -1;
 	}
-	while (*base)
+	while (*base && g_tab_test[(int)*base] == -1)
 	{
 		g_tab_test[(int)*base] = i++;
 		base++;
 	}
 	i = -2;
-	while (*oper)
+	while (*oper && g_tab_test[(int)*oper] == -1)
 	{
-		if (g_tab_test[(int)*oper] != -1)
-		{
-			ft_putstr(SYNTAXE_ERROR_MSG, 2);
-			return (0);
-		}
 		g_tab_test[(int)*oper] = i--;
 		oper++;
 	}
-	return (1);
+	return (!*base && !*oper);
 }
 
 t_fbig		*init_fptr()

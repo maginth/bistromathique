@@ -42,7 +42,7 @@ void			init_global(char *base, char *oper)
 {
 	t_ulong		ul1;
    
-	ul1= 1UL;
+	ul1= 1ULL;
 	g_base = ft_strlen2(base);
 	g_compl = 256 - g_base;
 	g_compl_8 = g_compl * 0x0101010101010101;
@@ -61,23 +61,20 @@ void			init_global(char *base, char *oper)
 int				eval_expr(char *base, char *oper, char *str)
 {
 	t_elem		parsed;
-	int			i;
 
-	i = 0;
-	if (!init_test_tab(base, oper))
+	if (init_test_tab(base, oper))
 	{
-		return (1);
-	}
-	init_global(base, oper);
-	g_op = init_fptr();
-	parsed = parse(&str);
-	if (parsed)
-	{
-		parsed = parse_op(parsed, &str, '\0');
+		init_global(base, oper);
+		g_op = init_fptr();
+		parsed = parse(&str);
 		if (parsed)
 		{
-			ft_putconvert(base, eval(parsed));
-			return (0);
+			parsed = parse_op(parsed, &str, '\0');
+			if (parsed)
+			{
+				ft_putconvert(base, eval(parsed));
+				return (0);
+			}
 		}
 	}
 	ft_putstr(SYNTAXE_ERROR_MSG, 2);

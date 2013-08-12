@@ -54,7 +54,7 @@ t_big	   	  get_mult(t_uchar c, t_big *table)
 	return (table[c]);
 }
 
-long			cmp_big(t_big a, t_big b, int offset)
+long long		cmp_big(t_big a, t_big b, int offset)
 {
 	t_ulong		*ia;
 	t_ulong		*ib;

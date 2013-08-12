@@ -17,17 +17,17 @@
 t_big			create_big(int len, int fill_zero)
 {
 	t_big			res;
-	long			*i;
-	long			*end;
+	t_ulong		*i;
+	t_ulong		*end;
 
 	res = malloc(sizeof(*res));
 	res->buf_len = ((len + EXTRA_BUF) | 7) + 1;
-	res->data = malloc(res->buf_len + 32) + 16;
+	res->data = malloc(res->buf_len + 16) + 8;
 	res->len = len;
 	res->sgn = 1;
-	*(long*)(res->data - 8) = 0;
-	i = (long*)res->data + (fill_zero ? 0 : (res->len >> 3) - 1);
-	end = (long*)res->data + (res->buf_len >> 3) + 1;
+	*(t_ulong*)(res->data - 8) = 0;
+	i = (t_ulong*)res->data + (fill_zero ? 0 : (res->len >> 3) - 1);
+	end = (t_ulong*)res->data + (res->buf_len >> 3) + 1;
 	while (i != end)
 	{
 		*i = 0;
@@ -68,7 +68,7 @@ void			destruct_big(t_big x)
 {
 	if (0 && x && x != g_zero_big)
 	{
-		free(x->data - 16);
+		free(x->data - 8);
 		free(x);
 	}
 }
