@@ -32,16 +32,17 @@ compare performance and result with the UNIX calculator bc
 *	./ultimate_bc_vs_calc :    
 benchmark test for both calc and bc with a giant random operation
 
-*	./simple_calc    \<operation\> :    
-simply compute \<operation\> without need to specify anything else
+*	./simple_calc    \<operation\>  [<base_symboles> [<operators>]]:    
+simply compute \<operation\> without need to specify anything else if you dont want to.   
 
 
 ## About :
 
 This program is originaly an exercice for entrance in the school 42 (france)   
 The original compilation flag have been turn off and replace with -O3 for performance.    
-In addition temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
-Some binary tricks propagate the carry instantly over the 8 digits.
+The teem failed epically to debug the program in time, hopefully after changing one line and 3 character you can now enjoy it.
+In addition of temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
+Some binary sweets propagate the carry instantly over the 8 digits.
 
 If you are interested in more documentation over the code, send me a message with your motivation at math.guin@gmail.com    
 

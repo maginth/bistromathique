@@ -12,4 +12,4 @@ else
 	OPER='()+-*/%'
 fi
 LEN=$(($(echo $1 | wc -c)-1))
-echo "$1" | time -f "%E sec" ./calc $BASE $OPER $LEN
+echo "$1" | ./calc $BASE $OPER $LEN
