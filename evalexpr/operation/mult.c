@@ -20,7 +20,7 @@ t_big			mult_big(t_big a, t_big b)
 
 	if (b->len > a->len)
 	{
-		mult_big(b, a);
+		return (mult_big(b, a));
 	}
 	if (b->len == 0)
 	{

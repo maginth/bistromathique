@@ -1,6 +1,6 @@
 # Bistromathique
 
-This is a fast calculator (faster than bc on big operation!). It deal with arbitrary base, arbitrary symbol arithmetic and arbitrary number size.    
+This is a fast calculator (faster than bc on some big operation!). It deal with arbitrary base, arbitrary symbol arithmetic and arbitrary number size.    
 It is design for 64 bits architecture yet run pretty fast on 32 bits too.   
 
 Run "make" in a terminal to compile.    
@@ -10,8 +10,8 @@ Run "make" in a terminal to compile.
 
 ## Usage :
 	./calc   <base_symbols>   <operators>   <operation_size>    <    <operation_file>     
-Note that every symbol in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
-
+Note that every symbol in the operation must be defined in \<base_symbols\> or \<operators\>, even space. Otherwise calc throws Syntax error.
+      
 ## Supported operations :
 ()+-*/% Symbols must be defined by typing them in the same order
 
