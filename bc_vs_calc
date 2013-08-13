@@ -1,0 +1,15 @@
+#! /bin/sh
+LEN=$(($(echo $1 | wc -c)-1))
+echo "input length = $LEN"
+echo $1 | time -f "calc %E sec" ./calc "0123456789" "()+-*/%" $LEN > calc_res
+echo $1 | time -f "bc   %E sec" bc | tr -d '\\\n' > bc_res; echo >> bc_res
+echo
+if test $(diff calc_res bc_res | wc -c) = 0
+then
+	cat calc_res
+else
+	echo "different result"
+	echo 'calc : ' $(cat calc_res)
+	echo 'bc   : ' $(cat bc_res)
+fi
+rm calc_res bc_res
