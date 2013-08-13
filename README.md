@@ -1,3 +1,5 @@
+== Bistromathique
+
 ### This is a fast calculator for arbitrary base, symbole arithmetic and number size.
 ### It is design for 64 bits architecture yet run pretty fast on 32 bits too
 

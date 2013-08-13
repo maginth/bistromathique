@@ -9,7 +9,7 @@ rand_num()
 		echo -n $RANDOM >> _operation_
 	done
 }
-rm  _operation_
+echo -n '' >  _operation_
 N=10000
 rand_num
 echo -n '*' >> _operation_

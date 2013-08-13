@@ -28,7 +28,8 @@ INCLUDE =	includes/
 
 OBJ =		$(SRC:.c=.o)
 
-CFLAGS =	-Wall -Werror -Wextra
+#CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-O3
 
 all:		$(NAME)
 
