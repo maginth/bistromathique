@@ -1,6 +1,6 @@
 # Bistromathique
 
-This is a fast calculator for arbitrary base, symbole arithmetic and number size.    
+This is a fast calculator (faster than bc on big operation!). It deal with arbitrary base, arbitrary symbole arithmetic and arbitrary number size.    
 It is design for 64 bits architecture yet run pretty fast on 32 bits too.   
 
 Run "make" in a terminal to compile.    
@@ -9,39 +9,40 @@ Run "make" in a terminal to compile.
 
 
 ## Usage :
-> ./calc <base_symboles> <operators> <operation_size>  <  <operation_file> 
+> ./calc \<base_symboles\> \<operators\> \<operation_size\>  \<  \<operation_file\> 
+	Note that every symbole in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
 
-## Supported operation :
+## Supported operations :
 ()+-*/% Symboles must be defined by typing them in the same order
 
 
 ## Examples :
-> echo '30-2*(4-1234%17)' | ./calc '0123456789' '()+-*/%' 16
+> echo '30-2*(4-1234%17)' | ./calc '0123456789' '()+-*/%' 16    
 	output : 42
 
-> echo '10001x[~00011+00101]\01011' | ./calc '01' '[]+~x/\' 26
+> echo '10001x[~00011+00101]\01011' | ./calc '01' '[]+~x/\' 26    
 	output : 1
 
-## I provide 3 additional script using ./calc :
+## 3 additional scripts using ./calc :
 
-* ./bc_vs_calc <operation>     
-compute <operation> with classical symbole,
+* ./bc_vs_calc \<operation\>     
+compute \<operation\> with classical symbole,
 compare performance and result with the UNIX calculator bc
 
 * ./ultimate_bc_vs_calc :    
 benchmark test for both calc and bc with a giant random operation
 
-* ./simple_calc <operation> :    
-simply compute <operation> without need to specify anything else
+* ./simple_calc \<operation\> :    
+simply compute \<operation\> without need to specify anything else
 
 
 ## About :
 
-This program is originaly an exercice for entrance in the school 42 (france)
+This program is originaly an exercice for entrance in the school 42 (france)   
 The original compilation flag have been turn off and replace with -O3 for performance.    
-In addition of creating temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits over 64 bits.    
-(each digit stands in a byte, max base size is 128). Some binary trick propagate the carry instantly over the 8 digits.
+In addition of creating temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
+Some binary trick propagate the carry instantly over the 8 digits.
 
-If you are interested in documentation over the code, send me a message with your motivation at math.guin@gmail.com    
+If you are interested in more documentation over the code, send me a message with your motivation at math.guin@gmail.com    
 
 PS : I will not help student to cheat, I am far too expensive
