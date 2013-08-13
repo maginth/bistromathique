@@ -9,30 +9,30 @@ Run "make" in a terminal to compile.
 
 
 ## Usage :
-> ./calc \<base_symboles\> \<operators\> \<operation_size\>  \<  \<operation_file\> 
-	Note that every symbole in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
+	./calc   \<base_symboles\>   \<operators\>   \<operation_size\>    \<    \<operation_file\>     
+Note that every symbole in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
 
 ## Supported operations :
 ()+-*/% Symboles must be defined by typing them in the same order
 
 
 ## Examples :
-> echo '30-2*(4-1234%17)' | ./calc '0123456789' '()+-*/%' 16    
-	output : 42
+	echo '30-2*(4-1234%17)' | ./calc '0123456789' '()+-*/%' 16    
+> output : 42
 
-> echo '10001x[~00011+00101]\01011' | ./calc '01' '[]+~x/\' 26    
-	output : 1
+	echo '10001x[~00011+00101]\01011' | ./calc '01' '[]+~x/\' 26    
+> output : 1
 
 ## 3 additional scripts using ./calc :
 
-* ./bc_vs_calc \<operation\>     
+*	./bc_vs_calc   \<operation\>     
 compute \<operation\> with classical symbole,
 compare performance and result with the UNIX calculator bc
 
-* ./ultimate_bc_vs_calc :    
+*	./ultimate_bc_vs_calc :    
 benchmark test for both calc and bc with a giant random operation
 
-* ./simple_calc \<operation\> :    
+*	./simple_calc    \<operation\> :    
 simply compute \<operation\> without need to specify anything else
 
 
