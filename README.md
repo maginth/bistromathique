@@ -1,6 +1,6 @@
 # Bistromathique
 
-This is a fast calculator (faster than bc on big operation!). It deal with arbitrary base, arbitrary symbole arithmetic and arbitrary number size.    
+This is a fast calculator (faster than bc on big operation!). It deal with arbitrary base, arbitrary symbol arithmetic and arbitrary number size.    
 It is design for 64 bits architecture yet run pretty fast on 32 bits too.   
 
 Run "make" in a terminal to compile.    
@@ -9,11 +9,11 @@ Run "make" in a terminal to compile.
 
 
 ## Usage :
-	./calc   <base_symboles>   <operators>   <operation_size>    <    <operation_file>     
-Note that every symbole in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
+	./calc   <base_symbols>   <operators>   <operation_size>    <    <operation_file>     
+Note that every symbol in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
 
 ## Supported operations :
-()+-*/% Symboles must be defined by typing them in the same order
+()+-*/% Symbols must be defined by typing them in the same order
 
 
 ## Examples :
@@ -26,13 +26,13 @@ Note that every symbole in the operation must be defined in \<base_symboles\> or
 ## 3 additional scripts using ./calc :
 
 *	./bc_vs_calc   \<operation\>     
-compute \<operation\> with classical symbole,
+compute \<operation\> with classical symbols,
 compare performance and result with the UNIX calculator bc
 
 *	./ultimate_bc_vs_calc :    
-benchmark test for both calc and bc with a giant random operation
+benchmark test for both calc and bc using a giant random operation
 
-*	./simple_calc    \<operation\>  [\<base_symboles\> [\<operators\>]]:    
+*	./simple_calc    \<operation\>  [\<base_symbols\> [\<operators\>]]:    
 simply compute \<operation\> without need to specify anything else if you dont want to.   
 
 
@@ -40,12 +40,12 @@ simply compute \<operation\> without need to specify anything else if you dont w
 
 This program is originaly an exercice for entrance in the school 42 (france)   
 The original compilation flag have been turn off and replace with -O3 for performance.    
-The team failed epically to debug the program in time,    
+The team epically failed to debug the program in time,    
 hopefully after changing one line and 3 character you can now enjoy it.    
 
-In addition of temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
+In addition of temporay tables to optimize mult, div and mod, the main trick is to compute addition and substraction over 8 digits instantly with 64 bits integers (each digit stands in a byte, max base size is 128).    
 Some binary sweets propagate the carry instantly over the 8 digits.
 
 If you are interested in more documentation over the code, send me a message with your motivation at math.guin@gmail.com    
 
-PS : I will not help student to cheat, I am far too expensive
+PS : I will not help student to cheat, I am far too expensive   
