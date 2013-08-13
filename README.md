@@ -4,12 +4,12 @@ This is a fast calculator (faster than bc on big operation!). It deal with arbit
 It is design for 64 bits architecture yet run pretty fast on 32 bits too.   
 
 Run "make" in a terminal to compile.    
->/!\ Big endian robot and other computer stuff, pass your way, your are not welcome /!\    
+>/!\ Big endian robot or other computing stuff, pass your way, your are not welcome /!\    
 >/!\   This is a Little endian bistro, you might get seriously drunk results here   /!\    
 
 
 ## Usage :
-	./calc   \<base_symboles\>   \<operators\>   \<operation_size\>    \<    \<operation_file\>     
+	./calc   <base_symboles>   <operators>   <operation_size>    <    <operation_file>     
 Note that every symbole in the operation must be defined in \<base_symboles\> or \<operators\>, even space. Otherwise calc throws Syntax error.
 
 ## Supported operations :
@@ -40,8 +40,8 @@ simply compute \<operation\> without need to specify anything else
 
 This program is originaly an exercice for entrance in the school 42 (france)   
 The original compilation flag have been turn off and replace with -O3 for performance.    
-In addition of creating temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
-Some binary trick propagate the carry instantly over the 8 digits.
+In addition temporay table to optimize multiplication and division, the main trick is to compute addition and substraction 8 digits by 8 digits instantly over 64 bits (each digit stands in a byte, max base size is 128).    
+Some binary tricks propagate the carry instantly over the 8 digits.
 
 If you are interested in more documentation over the code, send me a message with your motivation at math.guin@gmail.com    
 
