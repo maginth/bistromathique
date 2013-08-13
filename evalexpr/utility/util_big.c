@@ -66,7 +66,7 @@ void		extend_buf(t_big *x)
 
 void			destruct_big(t_big x)
 {
-	if (0 && x && x != g_zero_big)
+	if (x && x != g_zero_big)
 	{
 		free(x->data - 8);
 		free(x);
