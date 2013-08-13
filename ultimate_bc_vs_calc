@@ -1,0 +1,44 @@
+#! /bin/bash
+
+rand_num()
+{
+	echo "generation number about $[$N*5] digits"
+	while test $N != 0
+	do
+		N=$[$N-1];
+		echo -n $RANDOM >> _operation_
+	done
+}
+rm  _operation_
+N=10000
+rand_num
+echo -n '*' >> _operation_
+N=10000
+rand_num
+echo -n '/' >> _operation_
+N=4242
+rand_num
+echo -n '%' >> _operation_
+N=1234
+rand_num
+echo -n '+' >> _operation_
+N=1234
+rand_num
+echo -n '-' >> _operation_
+N=1234
+rand_num
+echo >> _operation_
+
+echo 'begining calcul'
+LEN=$[$(cat _operation_ | wc -c)-1]
+echo "input length = $LEN"
+cat _operation_ | time -f "calc %E sec" ./calc "0123456789" "()+-*/%" $LEN > calc_res
+cat _operation_ | time -f "bc   %E sec" bc | tr -d '\\\n' > bc_res; echo >> bc_res
+echo
+if test $(diff calc_res bc_res | wc -c) = 0
+then
+	echo "calc and bc give same result"
+else
+	echo "different results"
+fi
+rm calc_res bc_res
