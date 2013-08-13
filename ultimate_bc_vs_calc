@@ -41,4 +41,4 @@ then
 else
 	echo "different results"
 fi
-rm calc_res bc_res
+rm calc_res bc_res _operation_
