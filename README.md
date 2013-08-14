@@ -38,14 +38,14 @@ simply compute \<operation\> without need to specify anything else if you dont w
 
 ## About :
 
-This program is originaly an exercice for entrance in the school 42 (france)   
+This program is originaly an exercice for entrance in the school 42 (www.42.fr)   
 The original compilation flag have been turn off and replace with -O3 for performance.    
 The team epically failed to debug the program in time,    
-hopefully after changing one line and 3 character you can now enjoy it.    
+hopefully after changing two lines and 3 characters you can now enjoy it.    
 
-In addition of temporay tables to optimize mult, div and mod, the main trick is to compute addition and substraction over 8 digits instantly with 64 bits integers (each digit stands in a byte, max base size is 128).    
+In addition of temporay tables to optimize mult, div and mod, the main trick is to add or substract 8 digits instantly over 64 bits integers (each digit stands in a byte, max base size is 128).    
 Some binary sweets propagate the carry instantly over the 8 digits.
 
-If you are interested in more documentation over the code, send me a message with your motivation at math.guin@gmail.com    
+If you are interested in more documentation over the code, send me your motivation at math.guin@gmail.com    
 
 PS : I will not help student to cheat, I am far too expensive   

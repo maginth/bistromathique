@@ -56,13 +56,23 @@ t_big		divmod_big(t_big a, t_big b)
 	return (g_zero_big);
 }
 
+t_uchar		calc_digit(t_uchar *lead_a, int lead_b)
+{
+	int	digit;
+
+	digit = ((lead_a[2] * g_base + lead_a[1]) * g_base
+		+ *lead_a + 1) / lead_b;
+	return (digit >= g_base ? digit - 1 : digit);
+}
+
+
 void		divmod_data(t_big a, t_big *mult_b, t_big res)
 {
 	t_big		m;
 	t_uchar		digit;
 	int			offset;
 	t_uchar		*lead_a;
-	t_uchar		lead_b;
+	int			lead_b;
 
 	lead_a = mult_b[1]->data + mult_b[1]->len - 2;
 	lead_b = lead_a[1] * g_base + lead_a[0];
@@ -70,8 +80,7 @@ void		divmod_data(t_big a, t_big *mult_b, t_big res)
 	lead_a = (t_uchar*)(a->data + a->len - 2);
 	while (offset--)
 	{
-		digit = ((lead_a[2] * g_base + lead_a[1]) * g_base + *lead_a + 1) / lead_b;
-		if (digit)
+		if ((digit = calc_digit(lead_a--, lead_b)))
 		{
 			m = get_mult(digit, mult_b);
 			digit -= cmp_big(a, m, offset) < 0;
@@ -83,6 +92,5 @@ void		divmod_data(t_big a, t_big *mult_b, t_big res)
 			}
 		}
 		res->data[offset] = digit;
-		lead_a--;
 	}
 }
