@@ -66,7 +66,7 @@ long long		cmp_big(t_big a, t_big b, int offset)
 	{
 		ia = (t_ulong*)(a->data + a->len) - 1;
 		ib = (t_ulong*)(b->data + b->len) - 1;
-		end = ib - ((b->len + 7) >> 3);
+		end = ib - ((b->len - 1) >> 3);
 		while (ib != end && *ia == *ib)
 		{
 			ia--;
